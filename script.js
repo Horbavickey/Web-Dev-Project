@@ -14,6 +14,40 @@ const endPointButton = document.getElementById('end-point');
 const resetButton = document.getElementById('reset');
 const aStarSelect = document.getElementById('a-star-algorithms');
 const findPathButton = document.getElementById('find-path');
+
+// Initialize starting and ending points
+let startPoint;
+let endPoint;
+
+// Function for rendering the grid
+function renderGrid() {
+  for (let i = 0; i < GRID_HEIGHT; i++) {
+    for (let j = 0; j < GRID_WIDTH; j++) {
+      ctx.fillStyle = 'white';
+      ctx.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+
+      if (grid[i][j].isWall) {
+        ctx.fillStyle = 'black';
+        ctx.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      }
+
+      if (grid[i][j].isStart) {
+        ctx.fillStyle = 'green';
+        ctx.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      }
+
+      if (grid[i][j].isEnd) {
+        ctx.fillStyle = 'red';
+        ctx.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      }
+
+      ctx.strokeStyle = 'black';
+      ctx.strokeRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    }
+  }
+}
+
+// Initialize the grid
 const grid = Array.from({ length: GRID_HEIGHT }, () =>
   Array.from({ length: GRID_WIDTH }, () => ({
     isWall: false,
@@ -26,9 +60,15 @@ const grid = Array.from({ length: GRID_HEIGHT }, () =>
   }))
 );
 
-// Initialize starting and ending points
-let startPoint;
-let endPoint;
+// Rendering the starting grid
+for (let i = 0; i < GRID_HEIGHT; i++) {
+  for (let j = 0; j < GRID_WIDTH; j++) {
+    ctx.fillStyle = 'white';
+    ctx.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    ctx.strokeStyle = 'black';
+    ctx.strokeRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+  }
+}
 
 // Add event listeners to buttons
 startPointButton.addEventListener('click', () => {
@@ -48,57 +88,17 @@ resetButton.addEventListener('click', () => {
 });
 
 // Set up A* algorithm
-function heuristic(node, end) {
-  if (aStarSelect.value === 'euclidean') {
-    return Math.sqrt(Math.pow(node.x - end.x, 2) + Math.pow(node.y - end.y, 2));
-  }
+
+// Utility function for manhattan distance
+function manhattan(node, end) {
   return Math.abs(node.x - end.x) + Math.abs(node.y - end.y);
 }
 
-function getLowestF(nodes) {
-  return nodes.reduce((lowest, current) => (current.f < lowest.f ? current : lowest));
+// Function to find a node in the grid
+function findNode(grid, x, y) {
+  return grid[x] && grid[x][y];
 }
 
-function reconstructPath(current) {
-  const path = [current];
-  while (current.previous) {
-    current = current.previous;
-    path.unshift(current);
-  }
-  return path;
+// Function to update the grid
+function updateGrid(grid, node) {
 }
-
-function findPath() {
-  const openSet = [startPoint];
-  const closedSet = [];
-  while (openSet.length) {
-    const current = getLowestF(openSet);
-    if (current.x === endPoint.x && current.y === endPoint.y) {
-      const path = reconstructPath(current);
-      // Display path on the canvas
-      return path;
-    }
-  }
-    openSet.splice(openSet.indexOf(current), 1);
-    closedSet.push(current);
-    const neighbors = [
-      { x: current.x - 1, y: current.y },
-      { x: current.x + 1, y: current.y },
-      { x: current.x, y: current.y - 1 },
-      { x: current.x, y: current.y + 1 },
-    ];
-    for (const neighbor of neighbors) {
-      if (
-        !grid[neighbor.y] ||
-        grid[neighbor.y][neighbor.x].isWall ||
-        closedSet.some((el) => el.x === neighbor.x && el.y === neighbor.y)
-      )
-        continue;
-
-      const tempdistance = current.distance + 1;
-      if (tempdistance < grid[neighbor.y][neighbor.x].distance) {
-        grid[neighbor.y][neighbor.x].distance = tempdistance;
-        grid[neighbor.y][neighbor.x].heuristic = heuristic(grid[neighbor.y][neighbor.x])}
-        
-      }
-      }
