@@ -136,4 +136,4 @@ const exampleGrid = [
 
 const exampleStartpoint = [1, 1];
 const exampleEndPoint = [2, 3];
-aStarAlgorithm(exampleGrid, exampleStartPoint, exampleEndPoint);
+aStarAlgorithm(exampleGrid, exampleStartpoint, exampleEndPoint);
