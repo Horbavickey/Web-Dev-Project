@@ -1,4 +1,6 @@
 body {
+  background: linear-gradient (to right, #904e95, #f0f0f0);
+  animation: Gradient 3s ease inifinte
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
   margin: 0;
