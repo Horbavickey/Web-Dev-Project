@@ -72,7 +72,11 @@ for (let i = 0; i < GRID_HEIGHT; i++) {
 
 // Add event listeners to buttons
 startPointButton.addEventListener('click', () => {
-  // Set start point and toggle wall
+  function setStartAndEndPoint(start, end) {
+  // Code to handle the start and end points
+  console.log("Start point:", start);
+  console.log("End point:", end);
+}
 });
 
 wallsButton.addEventListener('click', () => {
