@@ -127,13 +127,14 @@ function resetGrid(grid) {
   }
 }
 
-// Example usage of A* algorithm
+// usage of A* algorithm
 const exampleGrid = [
   [1, 1, 1, 1, 1],
   [1, 0, 0, 0, 1],
   [1, 1, 1, 1, 1]
 ];
 
-const exampleStartpoint = [1, 1];
+const exampleStartPoint = [1, 1]; 
 const exampleEndPoint = [2, 3];
-aStarAlgorithm(exampleGrid, exampleStartpoint, exampleEndPoint);
+aStarAlgorithm(exampleGrid, exampleStartPoint, exampleEndPoint);
+
