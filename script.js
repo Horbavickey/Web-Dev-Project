@@ -72,23 +72,81 @@ for (let i = 0; i < GRID_HEIGHT; i++) {
 
 // Add event listeners to buttons
 startPointButton.addEventListener('click', () => {
-  function setStartAndEndPoint(startX, startY, endX, endY) {
-  // Code to handle the start and end points
-  console.log("Start point:", startX, startY);
-  console.log("End point:", endX, endY);
+  function aStarAlgorithm(grid, start) {
+  // Code for the A* algorithm
+  console.log("Start point:", start);
+  // Rest of the algorithm implementation
 }
+
+// Example usage
+const grid = [
+  [1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1]
+];
+
+const startPoint = [1, 1];
+aStarAlgorithm(grid, startPoint);
 });
 
 wallsButton.addEventListener('click', () => {
-  // Toggle wall
+  function createWalls(grid, wallCoordinates) {
+  for (const [x, y] of wallCoordinates) {
+    grid[x][y] = 0; // Set the value of the cell to indicate a wall
+  }
+}
+
+// Example usage
+const grid = [
+  [1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1]
+];
+
+const walls = [[1, 1], [1, 2], [1, 3]];
+createWalls(grid, walls);
+console.log(grid);
 });
 
 endPointButton.addEventListener('click', () => {
-  // Set end point
+  function aStarAlgorithm(grid, start, end) {
+  // Code for the A* algorithm
+  console.log("Start point:", start);
+  console.log("End point:", end);
+  // Rest of the algorithm implementation
+}
+
+// Example usage
+const grid = [
+  [1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1]
+];
+
+const startPoint = [1, 1];
+const endPoint = [2, 3];
+aStarAlgorithm(grid, startPoint, endPoint);
 });
 
 resetButton.addEventListener('click', () => {
-  // Reset all values
+  function resetGrid(grid) {
+  // Code to reset the grid
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      grid[i][j] = 0; // Set the value of each cell to indicate an open space
+    }
+  }
+}
+
+// Example usage
+const grid = [
+  [1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1]
+];
+
+resetGrid(grid);
+console.log(grid);
 });
 
 // Set up A* algorithm
