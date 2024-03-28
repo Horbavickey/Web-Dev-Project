@@ -72,81 +72,24 @@ for (let i = 0; i < GRID_HEIGHT; i++) {
 
 // Add event listeners to buttons
 startPointButton.addEventListener('click', () => {
-  function aStarAlgorithm(grid, start) {
-  // Code for the A* algorithm
-  console.log("Start point:", start);
-  // Rest of the algorithm implementation
-}
-
-// Example usage
-const grid = [
-  [1, 1, 1, 1, 1],
-  [1, 0, 0, 0, 1],
-  [1, 1, 1, 1, 1]
-];
-
-const startPoint = [1, 1];
-aStarAlgorithm(grid, startPoint);
+  startPoint = [1, 1];
+  console.log("Start point:", startPoint);
 });
 
 wallsButton.addEventListener('click', () => {
-  function createWalls(grid, wallCoordinates) {
-  for (const [x, y] of wallCoordinates) {
-    grid[x][y] = 0; // Set the value of the cell to indicate a wall
-  }
-}
-
-// Example usage
-const grid = [
-  [1, 1, 1, 1, 1],
-  [1, 0, 0, 0, 1],
-  [1, 1, 1, 1, 1]
-];
-
-const walls = [[1, 1], [1, 2], [1, 3]];
-createWalls(grid, walls);
-console.log(grid);
+  const walls = [[1, 1], [1, 2], [1, 3]];
+  createWalls(grid, walls);
+  console.log(grid);
 });
 
 endPointButton.addEventListener('click', () => {
-  function aStarAlgorithm(grid, start, end) {
-  // Code for the A* algorithm
-  console.log("Start point:", start);
-  console.log("End point:", end);
-  // Rest of the algorithm implementation
-}
-
-// Example usage
-const grid = [
-  [1, 1, 1, 1, 1],
-  [1, 0, 0, 0, 1],
-  [1, 1, 1, 1, 1]
-];
-
-const startPoint = [1, 1];
-const endPoint = [2, 3];
-aStarAlgorithm(grid, startPoint, endPoint);
+  endPoint = [2, 3];
+  console.log("End point:", endPoint);
 });
 
 resetButton.addEventListener('click', () => {
-  function resetGrid(grid) {
-  // Code to reset the grid
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[i].length; j++) {
-      grid[i][j] = 0; // Set the value of each cell to indicate an open space
-    }
-  }
-}
-
-// Example usage
-const grid = [
-  [1, 1, 1, 1, 1],
-  [1, 0, 0, 0, 1],
-  [1, 1, 1, 1, 1]
-];
-
-resetGrid(grid);
-console.log(grid);
+  resetGrid(grid);
+  console.log(grid);
 });
 
 // Set up A* algorithm
@@ -163,4 +106,38 @@ function findNode(grid, x, y) {
 
 // Function to update the grid
 function updateGrid(grid, node) {
+  // Add your implementation here
 }
+
+function aStarAlgorithm(grid, start, end) {
+  // Code for the A* algorithm
+  console.log("Start point:", start);
+  console.log("End point:", end);
+  // Rest of the algorithm implementation
+}
+
+function createWalls(grid, wallCoordinates) {
+  for (const [x, y] of wallCoordinates) {
+    grid[x][y].isWall = true; // Set the value of the cell to indicate a wall
+  }
+}
+
+function resetGrid(grid) {
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      grid[i][j].isWall = false; // Set the value of each cell to indicate an open space
+    }
+  }
+}
+
+// Example usage of A* algorithm
+const exampleGrid = [
+  [1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1]
+];
+
+const exampleStartPoint = [1, 1];
+const exampleEndPoint = [2, 3];
+aStarAlgorithm(exampleGrid, exampleStartPoint, exampleEndPoint);
+
