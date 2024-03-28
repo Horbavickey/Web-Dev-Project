@@ -61,34 +61,31 @@ const grid = Array.from({ length: GRID_HEIGHT }, () =>
 );
 
 // Rendering the starting grid
-for (let i = 0; i < GRID_HEIGHT; i++) {
-  for (let j = 0; j < GRID_WIDTH; j++) {
-    ctx.fillStyle = 'white';
-    ctx.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-    ctx.strokeStyle = 'black';
-    ctx.strokeRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-  }
-}
+renderGrid();
 
 // Add event listeners to buttons
 startPointButton.addEventListener('click', () => {
   startPoint = [1, 1];
+  renderGrid();
   console.log("Start point:", startPoint);
 });
 
 wallsButton.addEventListener('click', () => {
   const walls = [[1, 1], [1, 2], [1, 3]];
   createWalls(grid, walls);
+  renderGrid();
   console.log(grid);
 });
 
 endPointButton.addEventListener('click', () => {
   endPoint = [2, 3];
+  renderGrid();
   console.log("End point:", endPoint);
 });
 
 resetButton.addEventListener('click', () => {
   resetGrid(grid);
+  renderGrid();
   console.log(grid);
 });
 
@@ -140,4 +137,3 @@ const exampleGrid = [
 const exampleStartPoint = [1, 1];
 const exampleEndPoint = [2, 3];
 aStarAlgorithm(exampleGrid, exampleStartPoint, exampleEndPoint);
-
