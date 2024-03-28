@@ -72,10 +72,10 @@ for (let i = 0; i < GRID_HEIGHT; i++) {
 
 // Add event listeners to buttons
 startPointButton.addEventListener('click', () => {
-  function setStartAndEndPoint(start, end) {
+  function setStartAndEndPoint(startX, startY, endX, endY) {
   // Code to handle the start and end points
-  console.log("Start point:", start);
-  console.log("End point:", end);
+  console.log("Start point:", startX, startY);
+  console.log("End point:", endX, endY);
 }
 });
 
