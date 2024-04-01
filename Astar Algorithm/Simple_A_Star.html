@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>A* Algorithms</title>
+    <link rel="stylesheet" href="style.css" />
+ </head>
+ <body>
+    <div class="container">
+      <h1 class="header1">A STAR ALGORITHM</h1>
+      <p class="instructions">
+        <em>Click on the grid to set the start and end points.<br>
+        Choose the wall type and heuristic. Click on "Find" to start the algorithm.</em>
+      </p>
+      <div class="controls">
+        <button id="start-point" class="button">BEGINS</button>
+        <select id="wall-type" class="button">
+          <option value="make walls">Make Walls</option>
+          <option value="Create">Create Walls</option>
+        </select>
+        <button id="start-walls" class="button">Start</button>
+        <button id="end-point" class="button">ENDS</button>
+        <button id="reset" class="button">CLEAR</button>
+        <span class="algo">Heuristic:</span>
+        <select id="a-star-algorithms" class="button">
+          <option value="euclidean" style="background-color: lightblue">Euclidean</option>
+          <option value="manhattan" style="background-color: lightblue">Manhattan</option>
+        </select>
+        <button id="find-path" class="button" style="grid-column: 1 / -1">FIND</button>
+      </div>
+      <div class="canvas-container">
+        <canvas class="canvas" id="simple-canvas" width="800" height="600"></canvas>
+      </div>
+      <div class="copyright">&copy; HITS 2024 OBANLA JESUPEMI ADEMOYESOLA</div>
+    </div>
+    <script src="script.js"></script>
+ </body>
+</html>
