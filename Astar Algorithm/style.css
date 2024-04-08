@@ -4,32 +4,36 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
- }
- 
- .container {
+}
+
+.container {
   max-width: 70vw;
   margin: 0 auto;
   padding: 20px;  
   padding-top: 0.5%;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
- }
- .header1 {
+}
+
+.header1 {
   text-align: center;  
   font-size: 25pt;
   color:#4e54c8;
- }
- .instructions {  
+}
+
+.instructions {  
   text-align: center;
   margin-bottom: 20px;
- }
- .controls {
+}
+
+.controls {
   display: grid;  
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   column-gap: 16px;  
   row-gap: 16px;
- }
- .controls button, .controls select {
+}
+
+.controls button, .controls select {
   height: 50px;  
   display: inline-flex;
   align-items: center;  
@@ -38,25 +42,30 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;  
   transition: all 0.2s ease;
- }
- .controls button {  
+}
+
+.controls button {  
   background-color: #4e54c8;
   color:#fff;  
   flex-grow: 1;
- }
- .controls button:hover {  
+}
+
+.controls button:hover {  
   background-color: #904e95;
- }
- .controls select {  
+}
+
+.controls select {  
   background-color: #4e54c8;  
   color: white;
   flex-grow: 2;
- }
- .controls select:focus {
+}
+
+.controls select:focus {
   outline: none;  
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
- }
- .canvas-container {  
+}
+
+.canvas-container {  
   margin: 20px 0;
   background-color: #fff;  
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -65,12 +74,14 @@ body {
   justify-content: center;  
   border-radius: 6px;
   overflow: auto;
- }
- .canvas {
+}
+
+.canvas {
   border: 1px solid #ddd;  
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
- }
- .copyright {  
+}
+
+.copyright {  
   background: white;
   height: 10%;  
   color: #333;
@@ -80,5 +91,4 @@ body {
   justify-content: center;
   position: static;  
   margin-top: 20px;
- }
- 
+}

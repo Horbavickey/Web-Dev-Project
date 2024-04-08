@@ -1,6 +1,3 @@
-// Assuming the HTML and CSS are already set up as per your previous code
-
-// Initialize the array
 var ar = new Array(100);
 for (var i = 0; i < 100; i++) {
     ar[i] = new Array(100);
@@ -25,7 +22,7 @@ var timeoutPathID = [];
 var l = -1;
 var k = -1;
 
-// Creates gridded canvas
+//creates gridded canvas
 function createMapArray() {
     n = document.getElementById("numb").value;
 
@@ -36,10 +33,10 @@ function createMapArray() {
     endx = -1;
     endy = -1;
 
-    var button = document.getElementById("reset");
+    var button = document.getElementById("clearPath");
     button.disabled = true;
 
-    button = document.getElementById("find-path");
+    button = document.getElementById("startSearch");
     button.disabled = true;
 
     for (var i = 0; i < n; i++) {
@@ -50,173 +47,397 @@ function createMapArray() {
 
     canvas = document.querySelector("canvas");
 
+    canvas.width = window.innerHeight - 240;
+    canvas.height = canvas.width
+
     cellSide = Math.round(canvas.width / n);
     canvas.width = cellSide * n;
     canvas.height = cellSide * n;
+    console.log(canvas.width);
+    console.log(canvas.width / n);
 
     ctx = canvas.getContext("2d");
 
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
+
             drawRec(i, j, "black");
         }
     }
 }
 
-// Function to draw a rectangle on the canvas
-function drawRec(x, y, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x * cellSide, y * cellSide, cellSide, cellSide);
-}
-
-// Function to draw a flag or marker at the end point
-function drawFlag(x, y) {
-    ctx.fillStyle = "green";
-    ctx.fillRect(x * cellSide, y * cellSide, cellSide, cellSide);
-}
-
-// Add event listeners for buttons
-document.getElementById("start-walls").addEventListener("click", addWalls);
-document.getElementById("start-point").addEventListener("click", addStart);
-document.getElementById("end-point").addEventListener("click", addEnd);
-document.getElementById("find-path").addEventListener("click", search);
-
-// Corrected addWalls function
+//when you click add addWalls button
 function addWalls() {
+    canvas.removeEventListener("click", clickStart);
+    canvas.removeEventListener("click", clickEnd);
     canvas.addEventListener("mousedown", startPos);
     canvas.addEventListener("mouseup", endPos);
-    canvas.addEventListener("mousemove", clickwalls);
+    canvas.addEventListener("mousemove",clickwalls);
+
 }
 
-// Corrected addStart function
-function addStart() {
-    canvas.addEventListener("click", clickStart);
-}
+function startPos(e) {
+    painting = true;
 
-// Corrected addEnd function
-function addEnd() {
-    canvas.addEventListener("click", clickEnd);
-}
+    var x = e.pageX - (window.innerWidth - (canvas.width + 400));
+    var y = e.pageY - 240;
 
-// Placeholder for clearPath function
-function clearPath() {
-    // Implement logic to clear any previously drawn paths
-}
 
-// Placeholder for aStar function
-function aStar(ar, src, dest) {
-    // Implement A* pathfinding algorithm
-    console.log("A* pathfinding algorithm not implemented.");
-}
+    for (var i = 0; i < n; i++) {
+        for (var j = 0; j < n; j++) {
+            if (i * cellSide < x && x < i * cellSide + cellSide && j * cellSide < y && y < j * cellSide + cellSide) {
+                if (ar[i][j] == 0) {
+                    attribute = "add";
+                    ar[i][j] = 1;
+                    drawRec(i, j, "#808080");
 
-// Example of drawRec function
-function drawRec(x, y, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x * cellSide, y * cellSide, cellSide, cellSide);
-}
-
-// Example of drawFlag function
-function drawFlag(x, y) {
-    ctx.fillStyle = "green";
-    ctx.fillRect(x * cellSide, y * cellSide, cellSide, cellSide);
-}
-
-// Placeholder for clearPath function
-function clearPath() {
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            // Assuming the grid is initially black, so we redraw it as black.
-            drawRec(i, j, "black");
-        }
-    }
-}
-
-// Implementing the A* algorithm
-function aStar(ar, src, dest) {
-    // This is a simplified version of the A* algorithm.
-    // Assuming ar is a 2D array representing the grid, where 0 is walkable and 1 is a wall.
-
-    // The open set initially contains only the start node.
-    var openSet = [src];
-    // The closed set is initially empty.
-    var closedSet = [];
-
-    // The g score is the cost of the path from the start node to the current node.
-    // The h score is the heuristic estimate of the cost from the current node to the goal.
-    // The f score is the sum of the g and h scores.
-    var gScore = {};
-    var fScore = {};
-    var cameFrom = {};
-
-    gScore[src] = 0;
-    fScore[src] = heuristic(src, dest);
-
-    while (openSet.length > 0) {
-        // Find the node in the open set with the lowest f score.
-        var current = openSet.reduce((a, b) => fScore[a] < fScore[b] ? a : b);
-
-        // If the current node is the destination, we have found the path.
-        if (current.x === dest.x && current.y === dest.y) {
-            // Reconstruct the path from the start to the goal.
-            var path = [];
-            while (current) {
-                path.push(current);
-                current = cameFrom[current];
-            }
-            path.reverse();
-            return path; // Return the path.
-        }
-
-        // Move the current node from the open set to the closed set.
-        openSet = openSet.filter(node => node !== current);
-        closedSet.push(current);
-
-        // For each neighbor of the current node...
-        for (var i = -1; i <= 1; i++) {
-            for (var j = -1; j <= 1; j++) {
-                var neighbor = { x: current.x + i, y: current.y + j };
-
-                // Skip the current node and any out-of-bounds neighbors.
-                if (i === 0 && j === 0 || neighbor.x < 0 || neighbor.y < 0 || neighbor.x >= n || neighbor.y >= n) continue;
-
-                // If the neighbor is a wall, skip it.
-                if (ar[neighbor.x][neighbor.y] === 1) continue;
-
-                // Calculate tentative scores for the neighbor.
-                var tentativeGScore = gScore[current] + 1; // Assuming a cost of 1 to move to a neighbor.
-                if (!gScore[neighbor] || tentativeGScore < gScore[neighbor]) {
-                    cameFrom[neighbor] = current;
-                    gScore[neighbor] = tentativeGScore;
-                    fScore[neighbor] = gScore[neighbor] + heuristic(neighbor, dest);
-                    if (!openSet.includes(neighbor)) {
-                        openSet.push(neighbor);
+                    if (i == startx && j == starty) {
+                        hasStart = false;
+                        startx = -1;
+                        starty = -1;
                     }
+
+                    else if (i == endx && j == endy) {
+                        hasEnd = false;
+                        endx = -1;
+                        endy = -1;
+                    }
+
+                    return;
+                }
+
+                else {
+                    attribute = "remove";
+                    ar[i][j] = 0;
+                    drawRec(i, j, "black");
+                    return;
                 }
             }
         }
     }
-
-    // If we get here, there is no path.
-    return null;
 }
 
-function heuristic(a, b) {
-    // Use Manhattan distance as a simple heuristic.
-    return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
-}
-
-// Placeholder functions for handling mouse events
-function startPos(e) {
-    painting = true;
-}
-
-function endPos(e) {
+function endPos() {
     painting = false;
 }
 
+//function that adds walls/impassable area on canvas
 function clickwalls(e) {
+
     if (!painting) return;
-    var rect = canvas.getBoundingClientRect();
-    var x = Math.floor((e.clientX - rect.left) / cellSide);
-    var y = Math.floor((e.clientY - rect.top) / cellSide);
-    ar[x][y] = 1; // Set the cell as a wall
+
+    //returns mouse position of user
+    var x = e.pageX - (window.innerWidth - (canvas.width + 400));
+    var y = e.pageY - 240;
+
+    for (var i = 0; i < n; i++) {
+        for (var j = 0; j < n; j++) {
+            if (i * cellSide < x && x < i * cellSide + cellSide && j * cellSide < y && y < j * cellSide + cellSide) {
+                //adding new wall
+                if (attribute == "add" && ar[i][j] == 0) {
+                    ar[i][j] = 1;
+                    drawRec(i, j, "#808080");
+
+                    if (i == startx && j == starty) {
+                        hasStart = false;
+                        startx = -1;
+                        starty = -1;
+                    }
+
+                    else if (i == endx && j == endy) {
+                        hasEnd = false;
+                        endx = -1;
+                        endy = -1;
+                    }
+                }
+
+                //resetting current wall
+                else if (attribute == "remove" && ar[i][j] == 1) {
+                    ar[i][j] = 0;
+                    drawRec(i, j, "black");
+                }
+                return;
+            }
+        }
+    }
+}
+
+//when you click add start point button
+function addStart() {
+    canvas.removeEventListener("mousedown", startPos);
+    canvas.removeEventListener("mouseup", endPos);
+    canvas.removeEventListener("mousemove", clickwalls);
+    canvas.removeEventListener("click", clickEnd);
+    canvas.addEventListener("click", clickStart);
+
+}
+
+//function that adds start position on canvas
+function clickStart(e) {
+    //returns mouse position of user
+    var x = e.pageX - (window.innerWidth - (canvas.width + 400));
+    var y = e.pageY - 250;
+
+    //searching for correspondant cell that user clicked
+    for (var i = 0; i < n; i++) {
+        for (var j = 0; j < n; j++) {
+            if (i * cellSide < x && x < i * cellSide + cellSide && j * cellSide < y && y < j * cellSide + cellSide) {
+                //adding start pos for first time
+                if (!hasStart && (startx != i && starty != j)) {
+                    console.log("added start point");
+                    ar[i][j] = 0;
+                    hasStart = true;
+                    startx = i;
+                    starty = j;
+                    drawRec(startx, starty, "red");
+                }
+
+                else if (hasStart && (startx != i || starty != j)) {
+                    //removing old start pos
+                    clearPath();
+                    drawRec(startx, starty, "black");
+
+                    //adding new start pos
+                    ar[i][j] = 0;
+                    startx = i;
+                    starty = j;
+                    drawRec(i, j, "red");
+                }
+
+                //resetting start pos
+                else {
+                    hasStart = false;
+                    drawRec(i, j, "black");
+                    startx = -1;
+                    starty = -1;
+                    clearPath();
+                }
+
+                //checking if interfered with end position
+                if(endx == i && endy == j) {
+                    hasEnd = false;
+                    endx = -1;
+                    endy = -1;
+                }
+
+                break;
+            }
+        }
+    }
+
+    //checking status' status :)
+    if (hasStart == true && hasEnd == true) {
+        const button = document.getElementById("startSearch");
+        button.disabled = false;
+    }
+
+    else {
+        const button = document.getElementById("startSearch");
+        button.disabled = true;
+    }
+}
+
+//when you click add end point button
+function addEnd() {
+    canvas.removeEventListener("mousedown", startPos);
+    canvas.removeEventListener("mouseup", endPos);
+    canvas.removeEventListener("mousemove", clickwalls);
+    canvas.removeEventListener("click", clickStart);
+    canvas.addEventListener("click", clickEnd);
+
+}
+
+//function that adds end position on canvas
+function clickEnd(e) {
+    //returns mouse position of user
+    var x = e.pageX - (window.innerWidth - (canvas.width + 400));
+    var y = e.pageY - 240;
+
+    //searching for correspondant cell that user clicked
+    for (var i = 0; i < n; i++) {
+        for (var j = 0; j < n; j++) {
+            if (i * cellSide < x && x < i * cellSide + cellSide && j * cellSide < y && y < j * cellSide + cellSide) {
+                //adding end pos for first time
+                if (!hasEnd && (endx != i && endy != j)) {
+                    ar[i][j] = 0;
+                    hasEnd = true;
+                    endx = i;
+                    endy = j;
+                    drawFlag(i, j);
+                }
+
+                else if (hasEnd && (endx != i || endy != j)) {
+                    //removing old end pos
+                    clearPath();
+                    drawRec(endx, endy, "black");
+
+
+                    //adding new end pos
+                    ar[i][j] = 0;
+                    endx = i;
+                    endy = j;
+                    drawFlag(i, j);
+                }
+
+                //resetting end pos
+                else {
+                    hasEnd = false;
+                    ar[i][j] = 0;
+                    drawRec(i, j, "black");
+                    endx = -1;
+                    endy = -1;
+                    clearPath();
+                }
+
+                //checking if interfered with start position
+                if(startx == i && starty == j) {
+                    hasStart = false;
+                    startx = -1;
+                    starty = -1;
+                }
+
+                break;
+            }
+        }
+    }
+
+    //checking status' status :_)
+    if (hasStart == true && hasEnd == true) {
+        const button = document.getElementById("startSearch");
+        button.disabled = false;
+    }
+    else {
+        const button = document.getElementById("startSearch");
+        button.disabled = true;
+    }
+}
+
+//starts path searching algorithm
+function search() {
+    canvas.removeEventListener("click", clickwalls);
+    canvas.removeEventListener("click", clickStart);
+    canvas.removeEventListener("click", clickEnd);
+
+
+    clearPath();
+
+    weight = document.getElementById("astar_weight").value;
+    time = 0;
+
+    var src = {
+        x: startx,
+        y: starty
+    }
+
+    var dest = {
+        x: endx,
+        y: endy
+    }
+
+   aStar(ar, src, dest);
+}
+//changes color of cells according to their state
+function drawRec(x, y, state) {
+    ctx.fillStyle = state;
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 0.5;
+
+    ctx.beginPath();
+    ctx.rect(x * cellSide, y * cellSide, cellSide, cellSide);
+    ctx.fill();
+    ctx.stroke();
+}
+
+//animates cells changing colors
+function drawAnimation(x, y, state) {
+
+    time += 5;
+    k++;
+
+    timeoutID[k] = setTimeout(function () {
+        ctx.fillStyle = state;
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 0.5;
+
+        ctx.beginPath();
+        ctx.rect(x * cellSide, y * cellSide, cellSide, cellSide);
+        ctx.fill();
+        ctx.stroke();
+
+    }, time);
+}
+
+//draws end position flag
+function drawFlag(x, y) {
+
+    var white = 0;
+    ctx.fillStyle = "#000000";
+
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 7; j++) {
+
+            if (white == 0) {
+                ctx.fillStyle = "#000000";
+                white = 1;
+            }
+
+            else if (white == 1) {
+                ctx.fillStyle = "#FFFFFF";
+                white = 0;
+            }
+
+            ctx.beginPath();
+            ctx.rect(x * cellSide + (cellSide / 5 * i), y * cellSide + (cellSide / 7 * j), cellSide / 5, cellSide / 7);
+            ctx.fill();
+        }
+    }
+}
+
+//clears path created by algorithm
+function clearPath() {
+
+    for (let i = 0; i <= k; i++) {
+        clearTimeout(timeoutID[i]);
+    }
+
+    for (let i = 0; i <= l; i++) {
+        clearTimeout(timeoutPathID[i]);
+    }
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+
+            if (ar[i][j] == 0) {
+                drawRec(i, j, "black");
+            }
+
+            else{
+                drawRec(i, j, "#808080");
+            }
+        }
+    }
+
+    drawRec(startx, starty, "red");
+    drawFlag(endx, endy);
+
+    const button = document.getElementById("clearPath");
+    button.disabled = true;
+
+
+}
+
+//clears all walls
+function clearWalls() {
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (ar[i][j] = 1 && ((i != startx || j != starty) && (i != endx || j != endy))) {
+                ar[i][j] = 0;
+                drawRec(i, j, "black");
+            }
+        }
+    }
+
+    drawRec(startx, starty, "red");
+    drawFlag(endx, endy);
+}
