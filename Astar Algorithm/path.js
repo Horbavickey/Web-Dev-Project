@@ -21,8 +21,8 @@ function drawPath(x, y, temp_x, temp_y) {
     l++;
     timeoutPathID[l] = setTimeout(function () {
 
-        ctx.strokeStyle = "white";
-        ctx.lineWidth = 5;
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.moveTo(x * cellSide + cellSide / 2, y * cellSide + cellSide / 2);
 
@@ -54,4 +54,3 @@ function drawPath(x, y, temp_x, temp_y) {
 
     }, time);
 }
-//draws the path from start to finish   
