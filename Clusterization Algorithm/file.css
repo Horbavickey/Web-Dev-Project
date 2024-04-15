@@ -1,122 +1,119 @@
+/* Reset and Basic Styles */
 html {
-  position: relative;
-  min-height: 100%;
+    font-size: 16px;
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.6;
+    color: #333;
 }
 
-.ClustGround{
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: #111;
-  color: #fff;
-  overflow: hidden;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url(/img/Cluster.Background.jpg);
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
+/* Layout and Background */
+.ClustGround {
+    width: 100%;
+    height: 100vh;
+    background-color: #282c34;
+    color: #fff;
+    overflow: hidden;
+}
 
-#canvas {
-  background-color: #d8d4d4;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10%;
-  opacity: 0.6;
-} 
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
 
+.navbar-brand {
+    color: #61dafb;
+    text-decoration: none;
+}
+
+.navbar-brand span {
+    color: aquamarine;
+}
+
+/* Tasks List */
+.tasks_list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.tasks_list li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Wrapper and Toolbar */
 .wrapper {
-  margin-top: 75px;
-  display:grid;
-  grid-template-columns: 8ch auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
 .toolbar {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin: 75px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-input{
-  appearance: none;
-  border: 0;
-  border-radius: 10px;
-  background: #080D0D;
-  color: white;
-  font-size: 16px;
-  font-weight: lighter;
-  margin: 5px auto 5px auto;
-  text-align: center;
-}
-
+/* Buttons */
 .button {
-  width: 300px;
-  height: 50px;
+    background-color: #333;
+    color: #fff;
+    border: 2px solid #61dafb;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-#getClusters {
-  width: 50px;
-  height: 50px;
+.button:hover {
+    background-color: #61dafb;
+    color: #333;
+}
+a:after{
+  content: "";
+  position: absolute;
+  background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3);
+   /* #26c6da, #43a047, #eeff41, #f9a825, #ff5722); */
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -10px;
+  transition: 0.3s;
 }
 
-#kMeans {
-  width: 240px;
-  height: 50px;
+/* Canvas */
+#canvas {
+    background-color: whitesmoke;
+    border-radius: 1px;
+    opacity: 0.6;
+    margin-left: 250px;
+    margin-right: 330px;
 }
 
-#clear{
-  margin-bottom: 30px;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .toolbar {
+        flex-direction: column;
+    }
 
-#button-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  width: 300px;
-}
-
-@media (max-width: 980px){
-  header img{
-      display: none;
-  }
-  header{
-      flex-direction: column;
-      padding: 0px;
-      display:block;
-  }
-  header .end {
-      display: none;
-  }
-
-  #canvas {
-      margin-left: 250px;
-      margin-right: 330px;
-  }
-
-  .button {
-      width: 200px;
-      height: 40px;
-  }
-  
-  #getClusters {
-      width: 40px;
-      height: 40px;
-  }
-  
-  #kMeans {
-      width: 155px;
-      height: 40px;
-  }
-  
-  #clear{
-      margin-bottom: 10px;
-  }
-  
-  #button-wrapper {
-      margin-left: auto;
-      margin-right: auto;
-      width: 300px;
-  }
+    .button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
