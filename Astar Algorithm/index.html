@@ -4,32 +4,24 @@
 <head>
     <title>A-Star</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="../img/LogoIT.png">
 </head>
 
 <body>
     <header>
         <div class="element">
-            <img src="../img/LogoIT.png" alt="">
-        </div>
-        <div class="element">
-            <a class="navbar-brand" href="#">WEB DEV PROJECT</a>
+        <a class="navbar-brand" href="#">WEB <spa style="color: aquamarine;">DEV</spa> PROJECT</a>
         </div>
         <div class="tasks">
             <ul class="tasks_list">
-                <li><a href="../Astar Algorithm/index.html">A STAR</a></li>
-                <li><a href="../Clusterization Algorithm/index.html">CLUSTERIZATION</a></li>
-                <li><a href="../Genetic Algorithm/index.hmtl">GENETIC</a></li>
-                <li><a href="../Ant Algorithm/index.html">ANT</a></li>
-                <li><a href="../Decision Tree Algorithm/index.hmtl">DECISION TREE</a></li>
-                <li><a href="../Neural Network Algorithm/index.hmtl">NEURAL NET</a></li>
+                <li><a href="../Astar Algorithm/index.html">|| A STAR ||</a></li>
+                <li><a href="../Clusterization Algorithm/index.html">|| CLUSTERIZATION ||</a></li>
+                <li><a href="../Genetic Algorithm/index.hmtl">|| GENETIC ||</a></li>
+                <li><a href="../Ant Algorithm/index.html">|| ANT ||</a></li>
+                <li><a href="../Decision Tree Algorithm/index.hmtl">|| DECISION TREE ||</a></li>
+                <li><a href="../Neural Network Algorithm/index.hmtl">|| NEURAL NET ||</a></li>
             </ul>
         </div>
-        <nav class="end">
-            <a class="element" href="https://github.com/Shahbazsam" target="_blank">
-                <img src="../img/GitHub64px.png" alt="">
-            </a>
-        </nav>
+
     </header>
 
     <div id="size" class="panel">
@@ -38,8 +30,10 @@
     </div>
 
     <div id="command_panel" class="panel right_panel">
+        <div>
         <header class="header1">
             <h3 class="header2">Heuristic</h3>
+        </div>
         </header>
         <div class="sub_option">
             <input type="radio" name="astar_heuristic" id="manhattan" checked>
@@ -60,9 +54,9 @@
         </div>
     </div>
     <div id="parameter_panel" class="panel right_panel">
-        <button onclick="addWalls()">Add Walls Plz</button>
-        <button onclick="addStart()">Add Start Point</button>
-        <button onclick="addEnd()">Add End Point</button>
+        <button  onclick="addWalls()">Add Walls </button>
+        <button  onclick="addStart()">Add Start Point</button>
+        <button  onclick="addEnd()">Add End Point</button>
         <button id="MazeGeneration" onclick="generatePrimMaze()">Generate Maze</button>
     </div>
     <div id="control_panel" class="panel right_panel">
@@ -79,5 +73,4 @@
     <script src="mazealg.js"></script>
     
 </body>
-
 </html>

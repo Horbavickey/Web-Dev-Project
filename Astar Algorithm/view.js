@@ -39,7 +39,7 @@ function drawFlag(x, y) {
         for (let j = 0; j < 7; j++) {
 
             if (white == 0) {
-                ctx.fillStyle = "#000000";
+                ctx.fillStyle = "#00000";
                 white = 1;
             }
 
@@ -70,11 +70,11 @@ function clearPath() {
         for (let j = 0; j < n; j++) {
 
             if (ar[i][j] == 0) {
-                drawRec(i, j, "black");
+                drawRec(i, j, "green");
             }
 
             else{
-                drawRec(i, j, "#808080");
+                drawRec(i, j, "blue");
             }
         }
     }

@@ -15,6 +15,7 @@ header {
   color: #ecf0f1;
 }
 
+
 .element img {
   height: 50px;
 }
@@ -62,6 +63,7 @@ header {
   border-radius: 5px;
   border: 1px solid #bdc3c7;
   background-color: #ecf0f1;
+  cursor: pointer;
 }
 
 .panel input[type="button"] {
