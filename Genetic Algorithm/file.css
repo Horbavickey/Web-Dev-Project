@@ -44,7 +44,17 @@ header {
 .navbar-brand span {
     color: aquamarine;
 }
-
+label{
+    color:antiquewhite;
+    font-size: 18px;
+}
+button{
+    color: black;
+    background-color: aqua;
+    font-size: 18px;
+    border-radius: 15%;
+    padding: 3pt;
+}
 /* Tasks List */
 .tasks_list {
     list-style: none;
