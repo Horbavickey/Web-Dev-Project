@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-image: url("../img/LogoIT.png");
+  background-image: url("../img/Space.jpg");
   background-size:  60vmin;
   
 }
@@ -19,7 +19,7 @@ h2{
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-image: url("../img/fontpage.jpg");
+  background-image: url("../img/Space.jpg");
   background-size: cover;
   background-position: center center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);

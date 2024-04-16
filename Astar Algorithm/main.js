@@ -24,7 +24,7 @@ var endy = -1;
 var painting = false;
 var attribute;
 var time = 0;
-var weight = -1;
+var weight;
 var timeoutID = [];
 var timeoutPathID = [];
 var l = -1;
@@ -132,8 +132,6 @@ function endPos() {
 //function that adds walls/impassable area on canvas
 function clickwalls(e) {
 
-    // console.log("hit wall")
-
     if (!painting) return;
 
     //returns mouse position of user
@@ -176,17 +174,17 @@ function clickwalls(e) {
 function addStart() {
     canvas.removeEventListener("mousedown", startPos);
     canvas.removeEventListener("mouseup", endPos);
-    canvas.removeEventListener("mouseclick", clickwalls);
-    canvas.removeEventListener("click", clickStart);
-    canvas.addEventListener("click", clickEnd);
+    canvas.removeEventListener("mousemove", clickwalls);
+    canvas.removeEventListener("click", clickEnd);
+    canvas.addEventListener("click", clickStart);
 
 }
 
 //function that adds start position on canvas
 function clickStart(e) {
     //returns mouse position of user
-    var x = e.pageX - (window.innerWidth - (canvas.width + 450));
-    var y = e.pageY - 300;
+    var x = e.pageX - (window.innerWidth - (canvas.width + 400));
+    var y = e.pageY - 250;
 
     //searching for correspondant cell that user clicked
     for (var i = 0; i < n; i++) {
@@ -252,8 +250,8 @@ function addEnd() {
     canvas.removeEventListener("mousedown", startPos);
     canvas.removeEventListener("mouseup", endPos);
     canvas.removeEventListener("mousemove", clickwalls);
-    canvas.removeEventListener("click", clickEnd);
-    canvas.addEventListener("click", clickStart);
+    canvas.removeEventListener("click", clickStart);
+    canvas.addEventListener("click", clickEnd);
 
 }
 
@@ -261,7 +259,7 @@ function addEnd() {
 function clickEnd(e) {
     //returns mouse position of user
     var x = e.pageX - (window.innerWidth - (canvas.width + 400));
-    var y = e.pageY - 250;
+    var y = e.pageY - 240;
 
     //searching for correspondant cell that user clicked
     for (var i = 0; i < n; i++) {

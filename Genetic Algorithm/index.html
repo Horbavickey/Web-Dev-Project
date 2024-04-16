@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clusterization</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./file.css">
 </head>
 <body>
     <div class="ClustGround">
@@ -24,22 +24,24 @@
                     </ul>
                 </div>
         </header>
-        <div class="flex-wrapper"></div>
-        <div class="wrapper" id="wrapper">
-            <div class="toolbar">
-                <input type="button" class="button" id="add_point" value="Add points">
-                <input type="button" class="button" id="remove_point" value="Delete points">
-                <input type="button" class="button" id="show_old_points" value="Undo Algorithm">
-                <input type="button" class="button" id="clear" value="Reset">
-                <div id="button-wrapper">
-                    <input type="number" id="getClusters" min="1" max="27" step="1" value="3">
-                    <input type="button" id="kMeans" value="Execute K-means">
-                </div>
-                <input type="button" class="button" id="DBSCAN" value="Execute DBSCAN">
+        <canvas id="canvas" width="1000" height="600"></canvas>
+        <div class="main">
+          <button id="start-button">Initiate Search</button>
+          <button id="clear-button">Reselect Cities</button>
+        </div>
+          <div class="settings-bar">
+            <div class="main 2">
+            <label for="population-size">Whats the population-size</label>
+            <input type="number" id="population-size" value="100">
+            <label for="mutation-rate">Rate for Mutation</label>
+            <input type="number" id="mutation-rate" value="0.02" step="0.01">
+            <label for="iteration-limit">Limit of Iteration:</label>
+            <input type="number" id="iteration-limit" value="1000">
             </div>
-            <canvas id="canvas"></canvas>
+          </div>
         </div>
-        <script type='module' src="./main.js"></script>
-        </div>
-</body>
-</html>
+        <script src="script.js"></script>
+      </body>
+    </html>
+    
+    

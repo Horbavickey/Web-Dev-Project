@@ -1,8 +1,5 @@
-//Maze generation algorithm modified from https://cantwell-tom.medium.com/prims-algorithm-as-a-maze-in-javascript-aec7415ad2cd
 function generatePrimMaze() {
     //making maze full of walls
-    // console.log("Starting process of maze generation");
-
 
     time = 0;
 

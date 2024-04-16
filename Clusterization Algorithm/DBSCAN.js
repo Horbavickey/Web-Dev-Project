@@ -3,18 +3,27 @@ import {
     COUNT_NEIGHBOURS_POINTS,
     data_points,
     POINT_RADIUS,
-    activeMode,
+    activeMode  
 } from "./main.js";
 
-import { deepCopy } from "./func_for_algo.js";
+import {
+    deepCopy
+} from "./func_for_algo.js"
 
-import { disableButtons, enableButtons } from "./buttons_handler.js";
+import {
+    disableButtons,
+    enableButtons
+} from "./buttons_handler.js";
 
-import { calculateDistance, showOldPoints } from "./canvas_handler.js";
+import {
+    calculateDistance,
+    showOldPoints
+} from "./canvas_handler.js";
 
-export { startDBSCAN };
+export { startDBSCAN }
 
-const startDBSCAN = () => {
+
+function startDBSCAN() {
     showOldPoints();
 
     if (data_points.length > 0) {
@@ -22,82 +31,76 @@ const startDBSCAN = () => {
         DBSCAN(deepCopy(data_points));
         enableButtons();
     } else {
-        alert("Draw at least one point in the cluster");
+        alert("Draw at least one point in the cluster")
     }
-};
+}
 
-const DBSCAN = (points) => {
+function DBSCAN(points) {
     let count_clusters = 0;
 
-    points.forEach((point, i) => {
-        if (point.cluster === 0 && point.core === false) {
-            const neighbours = findNeighbours(point, count_clusters, points);
+    for (let i = 0; i < points.length; i++) {
+        if (points[i].cluster == 0 && points[i].core === false) {
+            let neighbours = findNeighbours(points[i], count_clusters, points);
 
             if (neighbours.length !== 0) {
-                point.core = true;
+                points[i].core = true;
                 count_clusters++;
 
-                point.cluster = count_clusters;
-                point.draw();
+                points[i].cluster = count_clusters;
+                points[i].draw();
 
-                const queue = deepCopy(neighbours);
+                let queue = deepCopy(neighbours);
 
-                queue.forEach((queuePoint) => {
-                    if (queuePoint.core === false) {
-                        queuePoint.core = true;
+                for (let j = 0; j < queue.length; j++) {
+                    if (queue[j].core === false) {
+                        queue[j].core = true;
                     }
 
-                    queuePoint.cluster = count_clusters;
-                    queuePoint.draw();
+                    queue[j].cluster = count_clusters;
+                    queue[j].draw();
 
-                    const newNeighbours = findNeighbours(queuePoint, count_clusters, points);
-                    if (newNeighbours.length !== 0) {
-                        queue.push(...newNeighbours);
+                    neighbours = findNeighbours(queue[j], count_clusters, points);
+                    if (neighbours.length !== 0) {
+                        for (let i = 0; i < neighbours.length; i++) {
+                            queue.push(neighbours[i]);
+                        }
                     }
-                });
+                }
+
             } else {
-                point.cluster = -1;
+                points[i].cluster = -1;
             }
         }
-    });
+    }
 
     if (!checkingOnChange(points)) {
-        alert("Failed to allocate points to clusters");
+        alert('Failed to allocate points to clusters');
     }
-};
+}
 
-const findNeighbours = (point, current_cluster, points) => {
+function findNeighbours(point, current_cluster, points) {
     let count_neighbours = 0;
-    const neighbours = [];
-
-    points.forEach((pointCandidate) => {
-        if (
-            point.x !== pointCandidate.x &&
-            point.y !== pointCandidate.y &&
-            pointCandidate.cluster < 1
-        ) {
-            if (
-                calculateDistance(point.x, point.y, pointCandidate.x, pointCandidate.y) -
-                    POINT_RADIUS <=
-                RADIUS_CHANGE
-            ) {
-                neighbours.push(pointCandidate);
+    let neighbours = [];
+    for (let i = 0; i < points.length; i++) {
+        if (point.x !== points[i].x && point.y !== points[i].y && points[i].cluster < 1) {
+            if (calculateDistance(point.x, point.y, points[i].x, points[i].y) - POINT_RADIUS <= RADIUS_CHANGE) {
+                neighbours.push(points[i]);
                 count_neighbours++;
             }
 
-        } else if (pointCandidate.cluster === current_cluster && current_cluster !== 0) {
+        } else if (points[i].cluster === current_cluster && current_cluster != 0) {
             count_neighbours++;
         }
-    });
+    }
 
     if (count_neighbours >= COUNT_NEIGHBOURS_POINTS) {
         return neighbours;
     }
 
     return [];
-};
+}
 
-const checkingOnChange = (points) => {
+function checkingOnChange(points) {
     for (let i = 0; i < points.length; i++) {
         if (points[i].cluster !== -1) {
             return true;
@@ -105,4 +108,4 @@ const checkingOnChange = (points) => {
     }
 
     return false;
-};
+}

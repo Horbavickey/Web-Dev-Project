@@ -2,17 +2,24 @@ import {
     ctx,
     POINT_RADIUS,
     SIZE_HEIGHT,
-    SIZE_WIDTH,
+    SIZE_WIDTH
+} from "./main.js";
+import {
     data_points,
     activeMode
-} from "./main.js";
+} from "./main.js"
+
 import { Point } from "./Objects.js";
 
 export {
-    handler,
+    addPoint,
+    removePoint,
+    isCanAddPoint,
+    calculateDistance,
+    showOldPoints,
     startDrawing,
     stopDrawing,
-    showOldPoints
+    handler
 };
 
 function handler(event) {
@@ -34,7 +41,7 @@ function addPoint(x, y) {
 function removePoint(x, y) {
     let index = getIndexPoint(x, y);
 
-    if (index !== -1) {
+    if (index != -1) {
         ctx.beginPath();
         ctx.arc(data_points[index].x, data_points[index].y, POINT_RADIUS + 1, 0, Math.PI * 2);
         ctx.closePath();
@@ -44,6 +51,7 @@ function removePoint(x, y) {
     }
 }
 
+//on and off drawing
 function startDrawing() {
     document.getElementById('canvas').addEventListener('mousemove', handler);
 }
@@ -51,6 +59,7 @@ function startDrawing() {
 function stopDrawing() {
     document.getElementById('canvas').removeEventListener('mousemove', handler);
 }
+
 
 function showOldPoints() {
     ctx.clearRect(0, 0, SIZE_WIDTH, SIZE_HEIGHT);
@@ -64,7 +73,9 @@ function isCanAddPoint(x, y) {
     if (x > POINT_RADIUS && x < SIZE_WIDTH - POINT_RADIUS && y > POINT_RADIUS && y < SIZE_HEIGHT - POINT_RADIUS) {
         let index = getNearestPointIndex(x, y);
 
-        if (index === -1 || calculateDistance(data_points[index].x, data_points[index].y, x, y) > 2 * POINT_RADIUS) {
+        if (index == -1) {
+            return true;
+        } else if (calculateDistance(data_points[index].x, data_points[index].y, x, y) > 2 * POINT_RADIUS) {
             return true;
         }
     }
@@ -74,14 +85,14 @@ function isCanAddPoint(x, y) {
 function getIndexPoint(x, y) {
     let index = getNearestPointIndex(x, y);
 
-    if (index !== -1) {
+    if (index != -1) {
         if (calculateDistance(data_points[index].x, data_points[index].y, x, y) < POINT_RADIUS) {
-            return index; // Hit the top
+            return index; //hit the top
         } else {
-            return -1; // Doesn't hit
+            return -1; //doesnt ^
         }
     } else {
-        // The user didn't add any vertex
+        // The user didnt add any vertex
         return -1;
     }
 }
@@ -93,7 +104,11 @@ function getNearestPointIndex(x, y) {
     for (let i = 0; i < data_points.length; i++) {
         let distance = calculateDistance(data_points[i].x, data_points[i].y, x, y);
 
-        if (minDistance === -1 || distance < minDistance) {
+        if (minDistance == -1) {
+            index = i;
+            minDistance = distance;
+
+        } else if (distance < minDistance) {
             index = i;
             minDistance = distance;
         }

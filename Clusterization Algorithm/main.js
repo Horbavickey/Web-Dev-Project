@@ -1,5 +1,10 @@
-import { handler, startDrawing, stopDrawing } from "./canvas_handler.js";
-import { buttonsHandler, buttonsRenderEvent } from "./buttons_handler.js";
+import {
+    handler,
+    startDrawing,
+    stopDrawing
+} from "./canvas_handler.js";
+import { buttonsHandler } from "./buttons_handler.js";
+import { buttonsRenderEvent } from "./buttons_handler.js";
 
 export {
     canvas,
@@ -33,27 +38,46 @@ let data_points = [],
 canvas.width = SIZE_WIDTH;
 canvas.height = SIZE_HEIGHT;
 
-const buttonIds = ['canvas', 'add_point', 'remove_point', 'kMeans', 'DBSCAN', 'show_old_points', 'clear'];
-
-buttonIds.forEach(id => {
-    const element = document.getElementById(id);
-    if (element) {
-        element.addEventListener('click', (e) => {
-            if (id === 'canvas') {
-                handler(e);
-            } else {
-                buttonsHandler(buttonIds.indexOf(id) + 1, e);
-                buttonsRenderEvent(e);
-            }
-        });
-
-        element.addEventListener('mouseover', buttonsRenderEvent);
-        element.addEventListener('mouseout', buttonsRenderEvent);
-    }
+document.getElementById('canvas').addEventListener('click', (e) => { handler(e) });
+document.getElementById('add_point').addEventListener('click', (e) => {
+    buttonsHandler(1, e);
+    buttonsRenderEvent(e)
 });
-
-canvas.addEventListener('mousedown', startDrawing); // To add points while pressing right click
-canvas.addEventListener('mouseup', stopDrawing);
-canvas.addEventListener('mouseleave', stopDrawing);
-
+document.getElementById('remove_point').addEventListener('click', (e) => {
+    buttonsHandler(2, e);
+    buttonsRenderEvent(e)
+});
+document.getElementById('kMeans').addEventListener('click', (e) => {
+    buttonsHandler(3, e);
+    buttonsRenderEvent(e)
+});
+document.getElementById('DBSCAN').addEventListener('click', (e) => {
+    buttonsHandler(4, e);
+    buttonsRenderEvent(e)
+});
+document.getElementById('show_old_points').addEventListener('click', (e) => {
+    buttonsHandler(5, e);
+    buttonsRenderEvent(e)
+});
 document.getElementById('clear').addEventListener('click', () => { window.location.reload() });
+
+
+document.getElementById('canvas').addEventListener('mousedown', startDrawing); //To add points while pressing right click
+document.getElementById('canvas').addEventListener('mouseup', stopDrawing);
+document.getElementById('canvas').addEventListener('mouseleave', stopDrawing);
+
+
+document.getElementById('add_point').addEventListener('mouseover', (e) => { buttonsRenderEvent(e) });
+document.getElementById('remove_point').addEventListener('mouseover', (e) => { buttonsRenderEvent(e) });
+document.getElementById('show_old_points').addEventListener('mouseover', (e) => { buttonsRenderEvent(e) });
+document.getElementById('clear').addEventListener('mouseover', (e) => { buttonsRenderEvent(e) });
+document.getElementById('kMeans').addEventListener('mouseover', (e) => { buttonsRenderEvent(e) });
+document.getElementById('DBSCAN').addEventListener('mouseover', (e) => { buttonsRenderEvent(e) });
+
+
+document.getElementById('add_point').addEventListener('mouseout', (e) => { buttonsRenderEvent(e) });
+document.getElementById('remove_point').addEventListener('mouseout', (e) => { buttonsRenderEvent(e) });
+document.getElementById('show_old_points').addEventListener('mouseout', (e) => { buttonsRenderEvent(e) });
+document.getElementById('clear').addEventListener('mouseout', (e) => { buttonsRenderEvent(e) });
+document.getElementById('kMeans').addEventListener('mouseout', (e) => { buttonsRenderEvent(e) });
+document.getElementById('DBSCAN').addEventListener('mouseout', (e) => { buttonsRenderEvent(e) });

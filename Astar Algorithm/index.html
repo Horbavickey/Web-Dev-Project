@@ -8,13 +8,13 @@
 <body>
     <header>
         <div class="element">
-        <a class="navbar-brand" href="#">WEB <spa style="color: aquamarine;">DEV</spa> PROJECT</a>
+        <a class="navbar-brand" href="#" " >WEB <spa style="color: aquamarine;">DEV</spa> PROJECT</a>
         </div>
         <div class="tasks">
             <ul class="tasks_list">
                 <li><a href="../Astar Algorithm/index.html">|| A STAR ||</a></li>
                 <li><a href="../Clusterization Algorithm/index.html">|| CLUSTERIZATION ||</a></li>
-                <li><a href="../Genetic Algorithm/index.hmtl">|| GENETIC ||</a></li>
+                <li><a href="../Genetic Algorithm/index.html">|| GENETIC ||</a></li>
                 <li><a href="../Ant Algorithm/index.html">|| ANT ||</a></li>
                 <li><a href="../Decision Tree Algorithm/index.hmtl">|| DECISION TREE ||</a></li>
                 <li><a href="../Neural Network Algorithm/index.hmtl">|| NEURAL NET ||</a></li>
@@ -24,28 +24,24 @@
     </header>
 
     <div id="size" class="panel">
-        Size of Grids=<input type="number" id="numb" min="2" max="100" />
+        Size of Grids=  <input type="number" id="numb" min="2" max="100" />
         <input type="button" value="Submit " onclick="createMapArray()" />
     </div>
 
     <div id="command_panel" class="panel right_panel">
-        <div>
-        <header class="header1">
-            <h3 class="header2">Heuristic</h3>
-        </div>
         </header>
         <div class="sub_option">
             <input type="radio" name="astar_heuristic" id="manhattan" checked>
-            <label class="option_label">Manhattan Distance</label>
+            <label class="option_label">manathan</label>
             <br>
             <input type="radio" name="astar_heuristic" id="euclidean">
-            <label class="option_label">Euclidean Distance</label>
+            <label class="option_label">euclidean</label>
             <br>
             <br>
         </div>
         <div class="optional sub_option">
             <input type="checkbox" id="allow_diagonal">
-            <label class="option_label">Allow Diagonal</label>
+            <label class="option_label">Make Diagonal</label>
             <br>
             <input class="number" id="astar_weight" value="2">
             <label class="option_label">Weight</label>
@@ -53,15 +49,15 @@
         </div>
     </div>
     <div id="parameter_panel" class="panel right_panel">
-        <button  onclick="addWalls()">Add Walls </button>
-        <button  id= "start-point"onclick="addStart()">Add Start Point</button>
-        <button id="end-point" onclick="addEnd()">Add End Point</button>
-        <button id="MazeGeneration" onclick="generatePrimMaze()">Generate Maze</button>
+        <button  onclick="addWalls()">MAKE WALLS</button>
+        <button  id= "start-point"onclick="addStart()">START FROM</button>
+        <button id="end-point" onclick="addEnd()">END HERE</button>
+        <button id="MazeGeneration" onclick="generatePrimMaze()">MAZE</button>
     </div>
     <div id="control_panel" class="panel right_panel">
-        <button id="startSearch" onclick="search()" disabled="disabled">START SEARCH</button>
-        <button id="clearPath" onclick="clearPath()" disabled="disabled">Clear ALL Path</button>
-        <button onclick ="clearWalls()">Clear All Walls</button>
+        <button id="startSearch" onclick="search()" disabled="disabled">INITIATE SEARCH</button>
+        <button id="clearPath" onclick="clearPath()" disabled="disabled">RESET PATHS</button>
+        <button onclick ="clearWalls()">WALLS DELETE</button>
     </div>
     <canvas></canvas>
     
