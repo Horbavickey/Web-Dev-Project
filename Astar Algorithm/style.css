@@ -160,7 +160,17 @@ div#control_panel.panel.right_panel{
   padding: 20px;
 }
 
-
+.copyright{
+  background: white;
+  height: 10%;
+  color: #333;
+  border-top: 2px solid rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  position: static;
+  margin-top: 38% ;
+}
 .panel{
   position: fixed;
   padding: 20px;

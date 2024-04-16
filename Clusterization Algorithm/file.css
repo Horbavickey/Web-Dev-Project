@@ -3,23 +3,18 @@ html {
     font-size: 16px;
     font-family: 'Kanit', sans-serif;
     line-height: 1.6;
-    background-image: url('../img/inspirational-backgrounds-big-photo-website-260nw-1117406765.webp');
-  background-size: cover;
+    color: #333;
 }
-
 
 body {
     margin: 0;
     padding: 0;
-    background-image: url('../img/inspirational-backgrounds-big-photo-website-260nw-1117406765.webp');
-    background-size: cover;
-  }
-
+    background-color: #f4f4f4;
+}
 
 /* Layout and Background */
 .ClustGround {
     width: 100%;
-    height: 100vh;
     background-color: #282c34;
     color: #fff;
     overflow: hidden;
@@ -64,6 +59,8 @@ header {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background-image: url('../img/back.png');
+    background-size: cover;
 }
 
 .toolbar {
@@ -76,7 +73,7 @@ header {
 
 /* Buttons */
 .button {
-    background-color: black;
+    background-color: #333;
     color: #fff;
     border: 2px solid #61dafb;
     padding: 10px 20px;
@@ -84,7 +81,17 @@ header {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
+.copyright{
+    background: white;
+    height: 10%;
+    color: #333;
+    border-top: 2px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    position: static;
+    
+  }
 .button:hover {
     background-color: #61dafb;
     color: #333;
