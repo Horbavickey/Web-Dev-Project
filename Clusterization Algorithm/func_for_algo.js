@@ -11,13 +11,13 @@ export {
 
 function checkingOnError(count_clusters) {
     if ((count_clusters > LIMIT_CLUSTERS)) {
-        alert("Cluster limit exceeded");
+        alert("the limit of the cluster exceeded");
         return true;
     } else if ((count_clusters <= 0) || (count_clusters == NaN)) {
         alert("The number of clusters are incorrect");
         return true;
     } else if (data_points.length < count_clusters) {
-        alert("You hace entered more groups than points. Add more points or change the number of clusters");
+        alert("You have entered more groups than points.  you will need to add more points or change the number of clusters");
         return true;
     } else {
         return false;
