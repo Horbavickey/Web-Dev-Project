@@ -262,3 +262,10 @@ div#control_panel.panel.right_panel{
   width: 300px;
 
 }
+.tasks_list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
