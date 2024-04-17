@@ -1,11 +1,4 @@
-import { POINT_RADIUS } from "./main.js";
-import { ctx } from "./main.js";
-
-export {
-    colors,
-    Point
-}
-
+import { POINT_RADIUS, ctx } from "./main.js";
 
 class Point {
     constructor(x, y, cluster) {
@@ -15,15 +8,15 @@ class Point {
         this.core = false; //Definition of the main or noise point (DBSCAN)
     }
 
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, POINT_RADIUS, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.fillStyle = colors[this.cluster];
-        ctx.fill();
+    draw = () => {
+        this.drawWithColor(colors[this.cluster]);
     }
 
-    redraw(color) {
+    redraw = (color) => {
+        this.drawWithColor(color);
+    }
+
+    drawWithColor = (color) => {
         ctx.beginPath();
         ctx.arc(this.x, this.y, POINT_RADIUS, 0, Math.PI * 2);
         ctx.closePath();
@@ -62,3 +55,8 @@ const colors = [
     'rgb(200, 200 ,200)',
     'rgb(210, 220 ,250)'
 ];
+
+export {
+    colors,
+    Point
+}

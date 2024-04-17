@@ -1,15 +1,7 @@
-import { LIMIT_CLUSTERS } from "./main.js";
-import { data_points } from "./main.js";
-
+import { LIMIT_CLUSTERS, data_points } from "./main.js";
 import { Point } from "./Objects.js";
 
-export {
-    checkingOnError,
-    deepCopy,
-    getRandomInt
-}
-
-function checkingOnError(count_clusters) {
+const checkingOnError = (count_clusters) => {
     if ((count_clusters > LIMIT_CLUSTERS)) {
         alert("the limit of the cluster exceeded");
         return true;
@@ -24,7 +16,7 @@ function checkingOnError(count_clusters) {
     }
 }
 
-function deepCopy(mas) {
+const deepCopy = (mas) => {
     let new_mas = [];
 
     for (let i = 0; i < mas.length; i++) {
@@ -36,8 +28,14 @@ function deepCopy(mas) {
     return new_mas;
 }
 
-function getRandomInt(min, max) {
+const getRandomInt = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
+}
+
+export {
+    checkingOnError,
+    deepCopy,
+    getRandomInt
 }
