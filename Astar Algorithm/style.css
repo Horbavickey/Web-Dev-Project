@@ -129,9 +129,11 @@ ul{
 
 canvas {
     position:fixed;
-    margin-top: 120px;
+    margin-top: 100px;
     right: 400px;
-
+    width: 800px;
+    height: 400px;
+    
 }
 
 input{
