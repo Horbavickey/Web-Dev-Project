@@ -20,7 +20,33 @@
                 <li><a href="../Neural Network Algorithm/index.html">|| NEURAL NET ||</a></li>
             </ul>
         </div>
-
-    </header>
-  </body>
-  </html>
+        </header>
+        <div class="container">
+        <label id="distance-label">Kilometer Distance:</label>
+      </div>
+        <div id="information" class="top-right-list">
+          <ul>
+            <li>
+              Alpha: <input class="control" type="number" id="Alpha" value="1" step="0.1">
+            </li>
+            <li>
+              Beta: <input class="control" type="number" id="Beta" value="3" step="0.1">
+            </li>
+            <li>
+              Pheromone: <input class="control" type="number" id="pheromone" value="0.5" step="0.1">
+            </li>
+            <li>
+              Iteration<input class="control" type="number" id="numIterations" name="numIterations" value="100">
+            </li>
+          </ul>
+          </div>
+        
+        <div class="button">
+          <button class = "btn" id = "Start" onclick="startOptimization()">Start</button> 
+        <button class = "btn" id = "Reset" onclick="reset()">Reset</button>
+        
+        </div>
+      </body>
+      <script src="main.js"></script>
+      </html>
+      
