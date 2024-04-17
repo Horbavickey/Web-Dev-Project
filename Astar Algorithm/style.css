@@ -168,8 +168,8 @@ div#control_panel.panel.right_panel{
   display: flex;
   align-items: center;
   justify-content:center;
-  position: static;
-  margin-top: 40% ;
+  position: relative;
+  margin-top: 45% ;
 }
 .panel{
   position: fixed;
