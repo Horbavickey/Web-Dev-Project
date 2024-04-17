@@ -128,11 +128,10 @@ ul{
 
 
 canvas {
-    position:fixed;
+    position:static;
     margin-top: 100px;
     right: 400px;
-    width: 800px;
-    height: 400px;
+    
     
 }
 
