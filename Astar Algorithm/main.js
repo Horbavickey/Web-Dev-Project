@@ -1,6 +1,4 @@
-//this is the main script file
-//it contains all global variables
-//creates the grid function
+
 //creats walls 
 //creat start and end point 
 //controls buttons
