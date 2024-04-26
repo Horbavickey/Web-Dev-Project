@@ -1,0 +1,95 @@
+body {
+  background: linear-gradient (to right, #904e95, #f0f0f0);
+  animation: Gradient 3s ease inifinte
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.instructions {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  column-gap: 16px;
+  row-gap: 16px;
+}
+
+.controls button,
+.controls select {
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.controls button {
+  background-color: #4e54c8;
+  color:#fff;
+  flex-grow: 1;
+}
+
+.controls button:hover {
+  background-color: #904e95;
+}
+
+.controls select {
+  background-image: none;
+  background-color: #fff;
+  color: #333;
+  flex-grow: 1;
+}
+
+.controls select:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-container {
+  margin: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  overflow: auto;
+}
+
+.canvas {
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.copyright {
+  background: white;
+  height: 10%;
+  color: #333;
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: static;
+  margin-top: 20px;
+}
